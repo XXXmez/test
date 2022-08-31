@@ -1,0 +1,150 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.table {
+    max-width: 1100px;
+    margin: 0 auto;
+    background-color: beige;
+    padding: 20px;
+
+    &__header {
+    }
+    &__setting {
+        display: flex;
+        justify-content: space-between;
+    }
+    &__search {
+    }
+    &__sort {
+        display: flex;
+        margin-top: 20px;
+        justify-content: space-between;
+
+        & > * {
+            width: 150px;
+            padding: 5px 0;
+            display: flex;
+            justify-content: center;
+            border:1px solid black
+        }
+
+        &-id {
+        }
+        &-firstName {
+        }
+        &-lastName {
+        }
+        &-email {
+        }
+        &-phone {
+        }
+    }
+    
+    &__content {
+    }
+
+    &__pagination {
+        display: flex;
+        gap: 15px;
+        &-prev {
+        }
+        &-str {
+        }
+        &-next {
+        }
+    }
+    
+
+    &__out {
+        margin-top: 30px;
+    }
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 30px;
+
+    &__sort {
+        position: sticky;
+        top: 0;
+        background: beige;
+
+        display: flex;
+        justify-content: space-between;
+        border-bottom: 1px solid black;
+        padding: 5px 0;
+
+        & > * {
+            width: 150px;
+
+        }
+
+        &__sort-id {
+        }
+        &__sort-firstName {
+        }
+        &__sort-lastName {
+        }
+        &__sort-email {
+        }
+        &__sort-phone {
+        }
+    }
+    
+    &__elements {
+        cursor: pointer;
+
+        &:hover {
+            background: gray;
+        }
+
+        display: flex;
+        justify-content: space-between;
+        border-bottom: 1px solid black;
+        padding: 5px 0;
+
+        & > * {
+            width: 150px;
+
+        }
+
+        &__element-id {
+        }
+        &__element-firstName {
+        }
+        &__element-lastName {
+        }
+        &__element-email {
+        }
+    }
+}
+
+.out {
+    &__info {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 15px;
+
+        & > * {
+            padding: 5px;
+            border: 1px solid black;
+        }
+    }
+    &__user {
+    }
+    &__description {
+    }
+    &__adres {
+    }
+    &__city {
+    }
+    &__shtat {
+    }
+    &__index {
+    }
+}

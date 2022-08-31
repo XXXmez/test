@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Задача №3</title>
+</head>
+<body>
+    <div class="table">
+        <div class="table__header">
+            <div class="table__setting">
+                <div class="table__search">
+                    <input type="text">
+                    <button>Найти</button>
+                </div>
+                <div class="table__paginations">
+                    <span>Количество элементов на странице</span>
+                    <select id="paginations-count">
+                        <option value="">15</option>
+                        <option value="">25</option>
+                        <option value="">50</option>
+                    </select>
+                </div>
+                <div class="table__data">
+                    <span>Выберите набор данных:</span>
+                    <button>mini</button>
+                    <button>big</button>
+                </div>
+            </div>
+        </div>
+        <div class="table__content content">
+            <div class="content__sort"> <!--content__elements -->
+                <div class="content__sort-id">id</div>
+                <div class="content__sort-firstName">firstName</div>
+                <div class="content__sort-lastName">lastName</div>
+                <div class="content__sort-email">email</div>
+                <div class="content__sort-phone">phone</div>
+            </div>
+            <!-- <div class="content__element">
+                <div class="content__element-id">1</div>
+                <div class="content__element-firstName">Иван</div>
+                <div class="content__element-lastName">Иванов</div>
+                <div class="content__element-email">mail@yandex.rururu</div>
+                <div class="content__element-phone">+7921545454</div>
+            </div>
+            <div class="content__element">
+                <div class="content__element-id">1</div>
+                <div class="content__element-firstName">Иван</div>
+                <div class="content__element-lastName">Иванов</div>
+                <div class="content__element-email">mail@yandex.rururu</div>
+                <div class="content__element-phone">+7921545454</div>
+            </div>
+            <div class="content__element">
+                <div class="content__element-id">1</div>
+                <div class="content__element-firstName">Иван</div>
+                <div class="content__element-lastName">Иванов</div>
+                <div class="content__element-email">mail@yandex.rururu</div>
+                <div class="content__element-phone">+7921545454</div>
+            </div>
+            <div class="content__element">
+                <div class="content__element-id">1</div>
+                <div class="content__element-firstName">Иван</div>
+                <div class="content__element-lastName">Иванов</div>
+                <div class="content__element-email">mail@yandex.rururu</div>
+                <div class="content__element-phone">+7921545454</div>
+            </div>
+            <div class="content__element">
+                <div class="content__element-id">1</div>
+                <div class="content__element-firstName">Иван</div>
+                <div class="content__element-lastName">Иванов</div>
+                <div class="content__element-email">mail@yandex.rururu</div>
+                <div class="content__element-phone">+7921545454</div>
+            </div>
+            <div class="content__element">
+                <div class="content__element-id">1</div>
+                <div class="content__element-firstName">Иван</div>
+                <div class="content__element-lastName">Иванов</div>
+                <div class="content__element-email">mail@yandex.rururu</div>
+                <div class="content__element-phone">+7921545454</div>
+            </div>
+            <div class="content__element">
+                <div class="content__element-id">1</div>
+                <div class="content__element-firstName">Иван</div>
+                <div class="content__element-lastName">Иванов</div>
+                <div class="content__element-email">mail@yandex.rururu</div>
+                <div class="content__element-phone">+7921545454</div>
+            </div>
+            <div class="content__element">
+                <div class="content__element-id">1</div>
+                <div class="content__element-firstName">Иван</div>
+                <div class="content__element-lastName">Иванов</div>
+                <div class="content__element-email">mail@yandex.rururu</div>
+                <div class="content__element-phone">+7921545454</div>
+            </div>
+            <div class="content__element">
+                <div class="content__element-id">1</div>
+                <div class="content__element-firstName">Иван</div>
+                <div class="content__element-lastName">Иванов</div>
+                <div class="content__element-email">mail@yandex.rururu</div>
+                <div class="content__element-phone">+7921545454</div>
+            </div>
+            <div class="content__element">
+                <div class="content__element-id">1</div>
+                <div class="content__element-firstName">Иван</div>
+                <div class="content__element-lastName">Иванов</div>
+                <div class="content__element-email">mail@yandex.rururu</div>
+                <div class="content__element-phone">+7921545454</div>
+            </div>
+            <div class="content__element">
+                <div class="content__element-id">1</div>
+                <div class="content__element-firstName">Иван</div>
+                <div class="content__element-lastName">Иванов</div>
+                <div class="content__element-email">mail@yandex.rururu</div>
+                <div class="content__element-phone">+7921545454</div>
+            </div>
+            <div class="content__element">
+                <div class="content__element-id">1</div>
+                <div class="content__element-firstName">Иван</div>
+                <div class="content__element-lastName">Иванов</div>
+                <div class="content__element-email">mail@yandex.rururu</div>
+                <div class="content__element-phone">+7921545454</div>
+            </div>
+            <div class="content__element">
+                <div class="content__element-id">1</div>
+                <div class="content__element-firstName">Иван</div>
+                <div class="content__element-lastName">Иванов</div>
+                <div class="content__element-email">mail@yandex.rururu</div>
+                <div class="content__element-phone">+7921545454</div>
+            </div>
+            <div class="content__element">
+                <div class="content__element-id">1</div>
+                <div class="content__element-firstName">Иван</div>
+                <div class="content__element-lastName">Иванов</div>
+                <div class="content__element-email">mail@yandex.rururu</div>
+                <div class="content__element-phone">+7921545454</div>
+            </div>
+            <div class="content__element">
+                <div class="content__element-id">1</div>
+                <div class="content__element-firstName">Иван</div>
+                <div class="content__element-lastName">Иванов</div>
+                <div class="content__element-email">mail@yandex.rururu</div>
+                <div class="content__element-phone">+7921545454</div>
+            </div>
+            <div class="content__element">
+                <div class="content__element-id">1</div>
+                <div class="content__element-firstName">Иван</div>
+                <div class="content__element-lastName">Иванов</div>
+                <div class="content__element-email">mail@yandex.rururu</div>
+                <div class="content__element-phone">+7921545454</div>
+            </div>
+            <div class="content__element">
+                <div class="content__element-id">1</div>
+                <div class="content__element-firstName">Иван</div>
+                <div class="content__element-lastName">Иванов</div>
+                <div class="content__element-email">mail@yandex.rururu</div>
+                <div class="content__element-phone">+7921545454</div>
+            </div>
+            <div class="content__element">
+                <div class="content__element-id">1</div>
+                <div class="content__element-firstName">Иван</div>
+                <div class="content__element-lastName">Иванов</div>
+                <div class="content__element-email">mail@yandex.rururu</div>
+                <div class="content__element-phone">+7921545454</div>
+            </div>
+            <div class="content__element">
+                <div class="content__element-id">1</div>
+                <div class="content__element-firstName">Иван</div>
+                <div class="content__element-lastName">Иванов</div>
+                <div class="content__element-email">mail@yandex.rururu</div>
+                <div class="content__element-phone">+7921545454</div>
+            </div>
+            <div class="content__element">
+                <div class="content__element-id">1</div>
+                <div class="content__element-firstName">Иван</div>
+                <div class="content__element-lastName">Иванов</div>
+                <div class="content__element-email">mail@yandex.rururu</div>
+                <div class="content__element-phone">+7921545454</div>
+            </div>
+            <div class="content__element">
+                <div class="content__element-id">1</div>
+                <div class="content__element-firstName">Иван</div>
+                <div class="content__element-lastName">Иванов</div>
+                <div class="content__element-email">mail@yandex.rururu</div>
+                <div class="content__element-phone">+7921545454</div>
+            </div> -->
+        </div>
+        <div class="table__pagination">
+            <div class="table__pagination-prev"><</div>
+            <div class="table__pagination-str">1</div>
+            <div class="table__pagination-next">></div>
+        </div>
+        <div class="table__out out">
+            <div class="out__info">
+                <div class="out__user">Выбран пользователь Иван Иванов</div>
+                <div class="out__description">Шел пить чай и не дошел</div>
+                <div class="out__adres">Улица Грусти дом 13</div>
+                <div class="out__city">город Печальных</div>
+                <div class="out__shtat">Штат унылых</div>
+                <div class="out__index">131313</div>
+            </div>
+        </div>
+    </div>
+    
+</body>
+</html>
