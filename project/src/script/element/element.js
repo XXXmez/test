@@ -18,7 +18,7 @@ class Element {
         this.elementPhone = new Component(this.element.component, 'div', ['content__element-phone'], this.phone);
 
         this.element.component.addEventListener('click', () => {
-            console.log('Нажатие на персону');
+            console.log('Нажатие на персону: ', this.id);
         })
     }
 }

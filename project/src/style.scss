@@ -17,6 +17,12 @@
         justify-content: space-between;
     }
     &__search {
+        &-input {
+        }
+
+        &-btn {
+            padding: 5px;
+        }
     }
     &__sort {
         display: flex;
@@ -49,11 +55,31 @@
     &__pagination {
         display: flex;
         gap: 15px;
+        justify-content: center;
+        margin: 15px 0;
+        align-items: center;
+
         &-prev {
+            width: 25px;
+            height: 25px;
+            border-radius: 50px;
+            border: 1px solid black;
+
+            &:hover {
+                background-color: blue;
+            }
         }
         &-str {
         }
         &-next {
+            width: 25px;
+            height: 25px;
+            border-radius: 50px;
+            border: 1px solid black;
+
+            &:hover {
+                background-color: blue;
+            }
         }
     }
     
@@ -69,7 +95,7 @@
     gap: 10px;
     margin-top: 30px;
 
-    &__sort {
+    &__sorts {
         position: sticky;
         top: 0;
         background: beige;
@@ -79,21 +105,21 @@
         border-bottom: 1px solid black;
         padding: 5px 0;
 
-        & > * {
-            width: 150px;
+        &-id {
+        }
+        &-firstName {
+        }
+        &-lastName {
+        }
+        &-email {
+        }
+        &-phone {
+        }
+    }
 
-        }
-
-        &__sort-id {
-        }
-        &__sort-firstName {
-        }
-        &__sort-lastName {
-        }
-        &__sort-email {
-        }
-        &__sort-phone {
-        }
+    &__sort {
+        width: 150px;
+        display: flex;
     }
     
     &__elements {
