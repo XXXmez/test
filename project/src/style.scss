@@ -9,6 +9,11 @@
     margin: 0 auto;
     background-color: beige;
     padding: 20px;
+    /* max-height: 100vh; */
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 
     &__header {
     }
@@ -94,6 +99,8 @@
     flex-direction: column;
     gap: 10px;
     margin-top: 30px;
+    flex: 0 1 auto;
+    overflow-y: auto;
 
     &__sorts {
         position: sticky;
@@ -120,9 +127,30 @@
     &__sort {
         width: 150px;
         display: flex;
+        user-select: none;
+        cursor: pointer;
+
+        &-active {
+            background-color: red;
+
+            &-wane {
+                &::after {
+                    content: '▼';
+                }
+            }
+            &-growth {
+                &::after {
+                    content: '▲';
+                }
+            }
+        }
     }
     
     &__elements {
+
+    }
+
+    &__element {
         cursor: pointer;
 
         &:hover {
