@@ -2,13 +2,8 @@ import Component from "../component/component";
 import Out from "./out";
 
 class Element {
-    constructor(root, data,  id, firstName, lastName, email, phone) {
+    constructor(root, data) {
         this.root = root;
-        // this.id = id;
-        // this.firstName = firstName;
-        // this.lastName = lastName;
-        // this.email = email;
-        // this.phone = phone;
         this.data = data;
 
         this.tableOut = document.querySelector('.table__out');

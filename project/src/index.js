@@ -18,10 +18,15 @@ const paginationsCount = document.querySelector('#paginations-count');
 
 const tableSearchBtn = document.querySelector('.table__search-btn');
 const tableSearchInput = document.querySelector('.table__search-input');
+const tableSearchReset = document.querySelector('.table__search-reset');
 
 let data;
+let filterData;
 let currentElementPage = 0;
-let currentPage = 1; 
+let currentPage = 1;
+
+let sorts = new Sorts(tableContent, start);
+let elements = new Component(tableContent, 'div', ['content__elements']);
 
 async function updateDate(url) {
     tableContent.style.opacity = '0.3';
@@ -33,18 +38,17 @@ async function updateDate(url) {
 updateDate(urlMini);
 
 async function sortsSet(){
+    tableSearchInput.value = '';
     currentElementPage = 0;
     currentPage = 1;
-    block();
+    blockPaginations();
     const contentSortActive = document.querySelector('.content__sort-active');
     if (contentSortActive) {
         if (contentSortActive.classList.contains('content__sort-active-wane')) {
-            // console.log('Убываем', contentSortActive.dataset.sort);
-            data.sort((a,b) => a[contentSortActive.dataset.sort] > b[contentSortActive.dataset.sort] ? 1 : -1)
+            data.sort((a,b) => a[contentSortActive.dataset.sort] > b[contentSortActive.dataset.sort] ? 1 : -1);
         }
         if (contentSortActive.classList.contains('content__sort-active-growth')) {
-            // console.log('Возрастание', contentSortActive.dataset.sort);
-            data.sort((a,b) => a[contentSortActive.dataset.sort] < b[contentSortActive.dataset.sort] ? 1 : -1)
+            data.sort((a,b) => a[contentSortActive.dataset.sort] < b[contentSortActive.dataset.sort] ? 1 : -1);
         }
     }
 }
@@ -63,70 +67,55 @@ tableDataBtns.forEach((e) => {
         if (e.dataset.size == 'mini') updateDate(urlMini);
         if (e.dataset.size == 'big') updateDate(urlBig);
     })
-})
+});
 
-
-
-// new Element(tableContent, 77, 'Руслан', 'Русланов', 'ruslan@mail.com', 8921212121)
-
-let sorts = new Sorts(tableContent, start);
-let elements = new Component(tableContent, 'div', ['content__elements'])
-
-async function start(sss, db) {
+async function start(sss, db = data) {
     elements.component.innerHTML = '';
 
     const paginationsCount = document.querySelector('#paginations-count');
     const count = paginationsCount.value;
     
     for (let i = sss; i < sss + Number(count); i++) {
-        if(i < db || data.length) {
-            // new Element(elements.component, data[i].id, data[i].firstName, data[i].lastName, data[i].email, data[i].phone);
-            new Element(elements.component, db || data[i]);
+        if(i < db.length) {
+            new Element(elements.component, db[i]);
         }
-        // console.log(i);
     }
 
     tableContent.style.opacity = '1'
     tablePaginationStr.textContent = currentPage;
 }
 
-
-function block(){
+function blockPaginations(){
     const paginationsCount = document.querySelector('#paginations-count').value;
     if (currentElementPage > Number(paginationsCount)-1) {tablePaginationPrev.disabled = false}
-    if (currentElementPage + Number(paginationsCount)-1 > data.length) {
-        tablePaginationNext.disabled = true
-    }
+    if (currentElementPage + Number(paginationsCount)-1 > data.length) {tablePaginationNext.disabled = true}
 
     if (currentElementPage < Number(paginationsCount)-1) tablePaginationPrev.disabled = true
-    if (currentElementPage + Number(paginationsCount)-1 < data.length) {
-        tablePaginationNext.disabled = false
-    }
+    if (currentElementPage + Number(paginationsCount)-1 < data.length) {tablePaginationNext.disabled = false}
 }
 
-function paginationNext(c) {
+function paginationNext() {
     const paginationsCount = document.querySelector('#paginations-count').value;
-    currentElementPage += Number(paginationsCount)
-    currentPage++
-    start(currentElementPage)
+    currentElementPage += Number(paginationsCount);
+    currentPage++;
+    start(currentElementPage);
 
-    block()
+    blockPaginations();
 }
-function paginationPrev(c) {
+function paginationPrev() {
     const paginationsCount = document.querySelector('#paginations-count').value;
-    currentElementPage -= Number(paginationsCount)
-    currentPage--
-    start(currentElementPage)
+    currentElementPage -= Number(paginationsCount);
+    currentPage--;
+    start(currentElementPage);
 
-    block()
+    blockPaginations();
 }
 
 tablePaginationNext.addEventListener('click', () => {
-    paginationNext()
+    paginationNext();
 })
 tablePaginationPrev.addEventListener('click', () => {
-    paginationPrev()
-
+    paginationPrev();
 })
 
 paginationsCount.onchange = function() {
@@ -136,13 +125,22 @@ paginationsCount.onchange = function() {
 
 function search() {
     const newData = data.filter(e => e.id == tableSearchInput.value.trim());
+    if (newData.length > 0) filterData = newData
+    else tableSearchInput.value = '';
 }
 
 tableSearchBtn.addEventListener('click', () => {
     if (tableSearchInput.value.trim()) {
-        console.log('Поиск');
+        search();
+        start(0, filterData);
+        tablePaginationNext.disabled = true;
     }
 });
 
+tableSearchReset.addEventListener('click', () => {
+        tableSearchInput.value = '';
+        start(0);
+        tablePaginationNext.disabled = false;
+})
 
-export { start, sortsSet}
+export { start, sortsSet };
