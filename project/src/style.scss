@@ -26,17 +26,28 @@ body {
     }
     &__search {
         &-input {
+            padding: 4px;
+            border-radius: 5px;
+            border: 1px solid black;
         }
 
         &-btn {
+            
+        }
+        &-reset {
+            
+        }
+        &-button {
             background: #c2e7ff;
             border: 0;
             padding: 5px 10px;
             border-radius: 5px;
             font-family: 'Roboto', sans-serif;
             
+            
             &:hover {
                 background: #8fc0e0;
+                box-shadow: 0 0 7px 5px rgb(0 0 0 / 7%);
             }
         }
     }
