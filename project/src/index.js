@@ -10,8 +10,18 @@ const urlBig = 'http://www.filltext.com/?rows=1000&id=%7Bnumber%7C1000%7D&firstN
 const tableContent = document.querySelector('.table__content');
 const tableDataBtns = document.querySelectorAll('.table__data-btn');
 
+const tablePaginationPrev = document.querySelector('.table__pagination-prev');
+const tablePaginationStr = document.querySelector('.table__pagination-str');
+const tablePaginationNext = document.querySelector('.table__pagination-next');
+
+const paginationsCount = document.querySelector('#paginations-count');
+
+const tableSearchBtn = document.querySelector('.table__search-btn');
+const tableSearchInput = document.querySelector('.table__search-input');
+
 let data;
 let currentElementPage = 0;
+let currentPage = 1; 
 
 async function updateDate(url) {
     tableContent.style.opacity = '0.3';
@@ -24,48 +34,115 @@ updateDate(urlMini);
 
 async function sortsSet(){
     currentElementPage = 0;
+    currentPage = 1;
+    block();
     const contentSortActive = document.querySelector('.content__sort-active');
     if (contentSortActive) {
         if (contentSortActive.classList.contains('content__sort-active-wane')) {
-            console.log('Убываем', contentSortActive.dataset.sort);
+            // console.log('Убываем', contentSortActive.dataset.sort);
             data.sort((a,b) => a[contentSortActive.dataset.sort] > b[contentSortActive.dataset.sort] ? 1 : -1)
         }
         if (contentSortActive.classList.contains('content__sort-active-growth')) {
-            console.log('Возрастание', contentSortActive.dataset.sort);
+            // console.log('Возрастание', contentSortActive.dataset.sort);
             data.sort((a,b) => a[contentSortActive.dataset.sort] < b[contentSortActive.dataset.sort] ? 1 : -1)
         }
     }
 }
 
+function removeDataActive() {
+    tableDataBtns.forEach((e) => {
+        e.classList.remove('table__data-btn-active');
+    });
+}
+
 tableDataBtns.forEach((e) => {
     e.addEventListener('click', () => {
-        console.log(e.dataset.size);
+        removeDataActive();
+        e.classList.add('table__data-btn-active');
+
         if (e.dataset.size == 'mini') updateDate(urlMini);
         if (e.dataset.size == 'big') updateDate(urlBig);
     })
 })
+
+
 
 // new Element(tableContent, 77, 'Руслан', 'Русланов', 'ruslan@mail.com', 8921212121)
 
 let sorts = new Sorts(tableContent, start);
 let elements = new Component(tableContent, 'div', ['content__elements'])
 
-async function start(start) {
+async function start(sss, db) {
     elements.component.innerHTML = '';
 
     const paginationsCount = document.querySelector('#paginations-count');
     const count = paginationsCount.value;
-
-    currentElementPage = count;
     
-    for (let i = start; i < start + count; i++) {
-        if(i < data.length) {
+    for (let i = sss; i < sss + Number(count); i++) {
+        if(i < db || data.length) {
             // new Element(elements.component, data[i].id, data[i].firstName, data[i].lastName, data[i].email, data[i].phone);
-            new Element(elements.component, data[i]);
+            new Element(elements.component, db || data[i]);
         }
+        // console.log(i);
     }
 
     tableContent.style.opacity = '1'
+    tablePaginationStr.textContent = currentPage;
 }
+
+
+function block(){
+    const paginationsCount = document.querySelector('#paginations-count').value;
+    if (currentElementPage > Number(paginationsCount)-1) {tablePaginationPrev.disabled = false}
+    if (currentElementPage + Number(paginationsCount)-1 > data.length) {
+        tablePaginationNext.disabled = true
+    }
+
+    if (currentElementPage < Number(paginationsCount)-1) tablePaginationPrev.disabled = true
+    if (currentElementPage + Number(paginationsCount)-1 < data.length) {
+        tablePaginationNext.disabled = false
+    }
+}
+
+function paginationNext(c) {
+    const paginationsCount = document.querySelector('#paginations-count').value;
+    currentElementPage += Number(paginationsCount)
+    currentPage++
+    start(currentElementPage)
+
+    block()
+}
+function paginationPrev(c) {
+    const paginationsCount = document.querySelector('#paginations-count').value;
+    currentElementPage -= Number(paginationsCount)
+    currentPage--
+    start(currentElementPage)
+
+    block()
+}
+
+tablePaginationNext.addEventListener('click', () => {
+    paginationNext()
+})
+tablePaginationPrev.addEventListener('click', () => {
+    paginationPrev()
+
+})
+
+paginationsCount.onchange = function() {
+    sortsSet();
+    start(0);
+}
+
+function search() {
+    const newData = data.filter(e => e.id == tableSearchInput.value.trim());
+}
+
+tableSearchBtn.addEventListener('click', () => {
+    if (tableSearchInput.value.trim()) {
+        console.log('Поиск');
+    }
+});
+
 
 export { start, sortsSet}

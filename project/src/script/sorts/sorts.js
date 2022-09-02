@@ -46,10 +46,6 @@ class Sorts extends Component {
                 e.component.classList.remove('content__sort-active', 'content__sort-active-wane', 'content__sort-active-growth')
             })
         }
-
-        async function f() {
-
-        }
     }
 }
 
