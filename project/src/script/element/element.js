@@ -10,7 +10,7 @@ class Element {
 
         this.element = new Component(this.root, 'div', ['content__element']);
 
-        this.elementId = new Component(this.element.component, 'div', ['content__element-id'], this.data.id);
+        this.elementId = new Component(this.element.component, 'div', ['content__element-id'], String(this.data.id));
         this.elementFirstName = new Component(this.element.component, 'div', ['content__element-firstName'], this.data.firstName);
         this.elementLastName = new Component(this.element.component, 'div', ['content__element-lastName'], this.data.lastName);
         this.elementEmail = new Component(this.element.component, 'div', ['content__element-email'], this.data.email);
